@@ -21,4 +21,6 @@ class DataReader:
         # images = [e.reshape((28, 28)) for e in train_set[0]]
         # draw_image(images[:1], (1, 1))
         train_set = list(zip(*train_set))
+        valid_set = list(zip(*valid_set))
+        test_set  = list(zip(*test_set))
         self.train_set, self.valid_set, self.test_set = train_set, valid_set, test_set
