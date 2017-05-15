@@ -14,9 +14,17 @@ class DenseLayer(AbstractLayer):
         self.alpha = alpha
 
     def feed_forward(self, X):
-        z = np.dot(self.W.T, X) + self.bias
-        return self.activation(z)
+        return self.activation(np.dot(self.W.T, X) + self.bias)
 
-    def backpropagation(self, inputs, delta):
+    def backpropagate(self, delta, outputs, prev_W, result=None):
+        if result is not None:
+            dot = result - outputs
+        else:
+            dot = np.dot(delta, prev_W.T)
+        d = self.d_activation(outputs)
+        return np.multiply(dot, d)
+
+    def update(self, inputs, delta):
         self.W += self.alpha * np.outer(inputs, delta)
         self.bias += self.alpha * delta
+

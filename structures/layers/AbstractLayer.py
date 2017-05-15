@@ -7,5 +7,9 @@ class AbstractLayer(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def backpropagation(self):
+    def backpropagate(self, delta, outputs, prev_W, result=None):
+        pass
+
+    @abc.abstractmethod
+    def update(self, inputs, delta):
         pass
