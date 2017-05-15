@@ -10,22 +10,24 @@ def d_sigmoid(x):
 
 
 def tanh(x):
-    res = np.tanh(x)
-    if np.nan in res:
-        print('nan')
-    return res
+    return np.tanh(x)
 
 
 def d_tanh(x):
-    res = 1 - tanh(x) ** 2
-    if np.nan in res:
-        print('nan')
-    return res
+    return 1 - tanh(x) ** 2
 
 
-def LReLU(x):
-    return np.maximum(x, 0.01, x)
+def ReLU(x):
+    return x * (x > 0)
 
 
-def d_LReLU(x):
+def d_ReLU(x):
+    return 1. * (x > 0)
+
+
+def same(x):
+    return x
+
+
+def d_same(x):
     return np.ones(x.shape)
