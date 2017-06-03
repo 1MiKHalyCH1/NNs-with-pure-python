@@ -1,6 +1,6 @@
 from datetime import datetime
 from data.DataManager import DataManager
-from structures.CNN import CNN
+from structures.NeuralNetwork import NeuralNetwork
 from structures.functions import sigmoid, d_sigmoid, same, d_same
 from structures.layers.DenseLayer import DenseLayer
 
@@ -11,9 +11,9 @@ def classify(arr):
 
 
 if __name__ == '__main__':
-    dm = DataManager()
+    dm = DataManager('mnist.pkl.gz')
 
-    nn = CNN()
+    nn = NeuralNetwork()
     nn.add_layer(DenseLayer(784, 400, sigmoid, d_sigmoid))
     nn.add_layer(DenseLayer(400, 150, sigmoid, d_sigmoid))
     nn.add_layer(DenseLayer(150, 50, sigmoid, d_sigmoid))

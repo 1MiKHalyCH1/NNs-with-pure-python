@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 
 
 class DataManager:
-    def __init__(self):
+    def __init__(self, filename):
+        self.filename = 'mnist.pkl.gz'
         self.read_data()
 
     def draw_image(self, pictures, lables, size):
@@ -18,7 +19,7 @@ class DataManager:
         plt.show()
 
     def read_data(self):
-        with gzip.open('mnist.pkl.gz', 'rb') as f:
+        with gzip.open(self.filename, 'rb') as f:
             data = pickle.load(f, encoding='latin1')
 
         # images = [e.reshape((28, 28)) for e in train_set[:, 0]]
@@ -37,3 +38,6 @@ class DataManager:
 
     def classify(self, x):
         return list(x).index(max(x))
+
+if __name__ == '__main__':
+    DataManger().read_data()
